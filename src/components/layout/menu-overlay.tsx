@@ -1,3 +1,4 @@
+import { SheetClose, SheetContent } from '../ui/sheet'
 import { NavLink } from './nav-link'
 
 type Link = {
@@ -9,12 +10,16 @@ type Props = {
 }
 export function MenuOverlay({ links }: Props) {
   return (
-    <ul className="flex flex-col py-4 items-center">
-      {links.map((link, index) => (
-        <li key={index}>
-          <NavLink href={link.path} title={link.title} />
-        </li>
-      ))}
-    </ul>
+    <SheetContent>
+      <ul className="flex flex-col items-center py-4">
+        {links.map((link, index) => (
+          <SheetClose asChild key={index}>
+            <li>
+              <NavLink href={link.path} title={link.title} />
+            </li>
+          </SheetClose>
+        ))}
+      </ul>
+    </SheetContent>
   )
 }
